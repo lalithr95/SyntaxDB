@@ -60,5 +60,4 @@ module Syntaxdb
     end
 
   end
-
 end
