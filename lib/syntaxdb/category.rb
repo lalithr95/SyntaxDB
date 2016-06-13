@@ -1,4 +1,4 @@
-require 'request'
+require 'syntaxdb/request'
 
 module Syntaxdb
   class Category
@@ -11,7 +11,7 @@ module Syntaxdb
       def language_categories(options = {})
         language_permalink = options[:language_permalink]
         if language_permalink
-          Request.send_request(options, "/languages/#{language_permalink}/categories")
+          Syntaxdb::Request.send_request(options, "/languages/#{language_permalink}/categories")
         end
       end
 
@@ -19,7 +19,7 @@ module Syntaxdb
         language_permalink = options[:language_permalink]
         @category_id = options[:category_id]
         if @category_id && language_permalink
-          Request.send_request(options, "/languages/#{language_permalink}/categories/#{category_id}/concepts")
+          Syntaxdb::Request.send_request(options, "/languages/#{language_permalink}/categories/#{category_id}/concepts")
         end
       end
 

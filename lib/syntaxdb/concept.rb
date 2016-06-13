@@ -1,4 +1,4 @@
-require 'request'
+require 'syntaxdb/request'
 
 module Syntaxdb
   class Concept
@@ -15,14 +15,14 @@ module Syntaxdb
       end
 
       def all(options = {})
-        Request.send_request(options, '/concepts')
+        Syntaxdb::Request.send_request(options, '/concepts')
       end
 
       def find(options = {})
         @concept_id = options[:concept_id]
         if @concept_id
           options.delete(:concept_id)
-          Request.send_request(options, "/concepts/#{@concept_id}")
+          Syntaxdb::Request.send_request(options, "/concepts/#{@concept_id}")
         end
       end
 
@@ -33,9 +33,9 @@ module Syntaxdb
           options.delete(:language_permalink)
           if @concept_permalink
             options.delete(:concept_permalink)
-            Request.send_request(options, "/languages/#{language_permalink}/concepts/#{@concept_permalink}")
+            Syntaxdb::Request.send_request(options, "/languages/#{language_permalink}/concepts/#{@concept_permalink}")
           else
-            Request.send_request(options, "/languages/#{language_permalink}/concepts")
+            Syntaxdb::Request.send_request(options, "/languages/#{language_permalink}/concepts")
           end
         end
       end
@@ -44,7 +44,7 @@ module Syntaxdb
         language_permalink = options[:language_permalink]
         if language_permalink
           options.delete(:language_permalink)
-          Request.send_request(options, "/languages/#{language_permalink}/concepts/search")
+          Syntaxdb::Request.send_request(options, "/languages/#{language_permalink}/concepts/search")
         end
       end
 
@@ -54,7 +54,7 @@ module Syntaxdb
         if language_permalink && category_id
           options.delete(:category_id)
           options.delete(:language_permalink)
-          Request.send_request(options, "/languages/#{language_permalink}/categories/#{category_id}/concepts")
+          Syntaxdb::Request.send_request(options, "/languages/#{language_permalink}/categories/#{category_id}/concepts")
         end
       end
     end

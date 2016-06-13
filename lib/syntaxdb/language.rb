@@ -1,4 +1,4 @@
-require 'request'
+require 'syntaxdb/request'
 
 module Syntaxdb
   class Language
@@ -10,7 +10,7 @@ module Syntaxdb
     
     class << self
       def all(options = {})
-        Request.send_request(options, '/languages')
+        Syntaxdb::Request.send_request(options, '/languages')
       end
 
       # params language_permalink
@@ -18,7 +18,7 @@ module Syntaxdb
         @language_permalink = options[:language_permalink]
         if @language_permalink
           options.delete(:language_permalink)
-          Request.send_request(options, "/languages/#{@language_permalink}")
+          Syntaxdb::Request.send_request(options, "/languages/#{@language_permalink}")
         end
       end
 
@@ -28,7 +28,7 @@ module Syntaxdb
         @language_permalink = options[:language_permalink]
         if @language_permalink
           options.delete(:language_permalink)
-          Request.send_request(options, "/languages/#{@language_permalink}/categories")
+          Syntaxdb::Request.send_request(options, "/languages/#{@language_permalink}/categories")
         end
       end
 
@@ -40,9 +40,9 @@ module Syntaxdb
           options.delete(:language_permalink)
           if category_id
             options.delete(:category_id)
-            Request.send_request(options, "/languages/#{@language_permalink}/categories/#{category_id}/concepts")
+            Syntaxdb::Request.send_request(options, "/languages/#{@language_permalink}/categories/#{category_id}/concepts")
           else
-            Request.send_request(options, "/languages/#{@language_permalink}/concepts")
+            Syntaxdb::Request.send_request(options, "/languages/#{@language_permalink}/concepts")
           end
         end
       end

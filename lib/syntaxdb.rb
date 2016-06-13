@@ -1,5 +1,5 @@
 require "syntaxdb/version"
-
-module Syntaxdb
-  # Your code goes here...
-end
+require "syntaxdb/category"
+require "syntaxdb/concept"
+require "syntaxdb/language"
+require "syntaxdb/request"
