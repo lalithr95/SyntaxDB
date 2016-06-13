@@ -2,7 +2,6 @@
 
 Ruby client which supports SyntaxDB API. Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/syntaxdb`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -22,7 +21,50 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+`all()`
+The Languages endpoint returns all languages available on Syntaxdb, sorted by position by default. 
+
+**Parameter: fields, limit, sort**
+```ruby
+Syntaxdb::Language.all
+```
+
+`find()`
+Returns the language corresponding to the permalink along with its information.
+
+**Parameter: language_permalink(required), fields, limit, sort**
+```ruby
+Syntaxdb::Language.find({language_permalink: 'java'})
+```
+
+`find_categories()`
+The language categories endpoint returns all of the categories corresponding to the language.
+
+**Parameter: language_permalink(required), fields, limit, sort**
+```ruby
+Syntaxdb::Language.find_categories({
+    language_permalink: 'java'
+})
+```
+
+`find_concepts()`
+The category concepts endpoint returns all concepts belonging to the category, sorted by position by default.
+
+**Parameter: language_permalink(required), category_id(required), fields, limit, sort**
+```ruby
+Syntaxdb::Language.find_concepts({
+    language_permalink: 'java', 
+    category_id: 1
+})
+```
+
+`find_concepts()`
+The language concepts endpoint returns all concepts belonging to the language, sorted by position by default.
+
+**Parameter: language_permalink(required), fields, limit, sort**
+```ruby
+Syntaxdb::Language.find_concepts({ language_permalink: 'java' })
+```
 
 ## Development
 
@@ -38,4 +80,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
